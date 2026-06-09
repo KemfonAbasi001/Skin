@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import bgImage from '../assets/LandingPage_Image.png'
 import img from '../assets/productImage.png'
 import imgtwo from '../assets/Product_Background.png'
@@ -20,8 +21,78 @@ function Card(props) {
 }
 
 function Hero() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <>
+      <p className="text-[.85rem] lg:text-[.9rem] text-center py-2.75 bg-[#547c24] text-white">
+        Free Shipping on all orders above $250
+      </p>
+
+      <header className="w-full">
+        <nav className="w-[90%] mx-auto my-0 bg-white flex justify-between items-center py-2" id="myNavbar">
+          <a className="italic text-[#547c24] font-[600]" href="index.html">
+            <h1 className="logo-text text-[1.3rem] sm:text-[1.5rem] md:text-[1.7rem] lg:text-[1.9rem]">SkinLovry</h1>
+          </a>
+
+          <ul className="hidden lg:flex lg:items-center lg:gap-6 list-none" id="navLinks">
+            <li><a href="#" className="text-[16px] hover:text-[#547c24] transition-colors">Best Sellers</a></li>
+            <li><a href="#" className="text-[16px] hover:text-[#547c24] transition-colors">Collections</a></li>
+            <li><a href="#" className="text-[16px] hover:text-[#547c24] transition-colors">Sale</a></li>
+            <li><a href="#" className="text-[16px] hover:text-[#547c24] transition-colors">Shop</a></li>
+            <li><a href="#" className="text-[16px] hover:text-[#547c24] transition-colors">Skin Type</a></li>
+          </ul>
+
+          <button
+            className="lg:hidden text-[1.1rem] p-1"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+          >
+            <i className="fa fa-bars" aria-hidden="true"></i>
+          </button>
+
+          <div class="hidden lg:flex gap-[6px]" id="iconsSection">
+                {/* <!-- <input type="text" class="search-input" id="searchInput" placeholder="Search.."> --> */}
+                <i class="fa-solid fa-magnifying-glass text-[1.1rem]" id="searchIcon"></i>
+                <i class="fa-regular fa-heart heart-icon text-[1.1rem]"></i>
+                <i class="fa-solid fa-cart-shopping text-[1.1rem]"></i>
+            </div>
+        </nav>
+      </header>
+
+      {/* Mobile Drawer Overlay */}
+      {menuOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 lg:hidden"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
+
+      {/* Mobile Drawer */}
+      <div
+        className={`fixed top-0 right-0 h-full w-[80%] bg-white z-50 lg:hidden flex flex-col pt-6 px-6 gap-2 shadow-xl
+          transition-transform duration-300 ease-in-out
+          ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-[1.3rem] italic text-[#547c24] font-[500]">SkinLovry</h1>
+          <button
+            className="text-[1.2rem] p-1"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <i className="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <ul className="list-none flex flex-col gap-5">
+          <li><a href="#" className="text-[1rem] font-medium hover:text-[#547c24] transition-colors" onClick={() => setMenuOpen(false)}>Best Sellers</a></li>
+          <li><a href="#" className="text-[1rem] font-medium hover:text-[#547c24] transition-colors" onClick={() => setMenuOpen(false)}>Collections</a></li>
+          <li><a href="#" className="text-[1rem] font-medium hover:text-[#547c24] transition-colors" onClick={() => setMenuOpen(false)}>Sale</a></li>
+          <li><a href="#" className="text-[1rem] font-medium hover:text-[#547c24] transition-colors" onClick={() => setMenuOpen(false)}>Shop</a></li>
+          <li><a href="#" className="text-[1rem] font-medium hover:text-[#547c24] transition-colors" onClick={() => setMenuOpen(false)}>Skin Type</a></li>
+        </ul>
+      </div>
+
       {/* Hero / Landing Section */}
       <section
         className="w-full py-45 sm:py-48 md:py-60 lg:py-70 flex justify-center items-center bg-cover bg-center bg-no-repeat"
@@ -29,7 +100,7 @@ function Hero() {
       >
         <div className="w-[90%]">
           <div className="w-full font-[serif] text-white text-center md:text-right md:flex md:flex-col md:items-end">
-            <h1 className="text-[2rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.5rem] leading-tight tracking-[2px] font-medium">
+            <h1 className="text-[2.3rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.5rem] leading-tight tracking-[2px] font-medium">
               Glow with Aloe Naturally.<br className="hidden sm:block" /> Radiate Confidence.
             </h1>
             <p className="text-[1rem] sm:text-[1.2rem] md:text-[1.3rem] lg:text-[1.4rem] leading-7 tracking-[1px] mt-4 mb-7 max-w-full md:max-w-150">
@@ -88,7 +159,7 @@ function Hero() {
           </p>
           <button
             type="button"
-            className="py-2.5 px-18 sm:px-20 md:px-25 mt-2 text-[15px] sm:text-[15px] rounded-full w-fit self-center bg-[#547c24] text-white font-medium"
+            className="py-2.5 px-18 sm:px-20 md:px-25 mt-2 text-[15px] rounded-full w-fit self-center bg-[#547c24] text-white font-medium"
           >
             Shop Now
           </button>
@@ -108,7 +179,7 @@ function Hero() {
           </p>
           <button
             type="button"
-            className="py-2.5 px-18 sm:px-20 md:px-25 mt-2 text-[15px] sm:text-[15px] rounded-full w-fit self-center bg-[#547c24] text-white font-medium"
+            className="py-2.5 px-18 sm:px-20 md:px-25 mt-2 text-[15px] rounded-full w-fit self-center bg-[#547c24] text-white font-medium"
           >
             Shop Now
           </button>
@@ -126,7 +197,6 @@ function Hero() {
               <a href="" className="text-[1.07rem] sm:text-[15px]">Careers</a>
               <a href="" className="text-[1.07rem] sm:text-[15px]">Press Centre</a>
             </div>
-
             <div className="flex flex-col gap-3">
               <h2 className="text-[1.1rem] font-bold text-black">Support</h2>
               <a href="" className="text-[1.07rem] sm:text-[15px]">Product Guide</a>
@@ -134,7 +204,6 @@ function Hero() {
               <a href="" className="text-[1.07rem] sm:text-[15px]">Product Update</a>
               <a href="" className="text-[1.07rem] sm:text-[15px]">Community Forum</a>
             </div>
-
             <div className="flex flex-col gap-3">
               <h2 className="text-[1.1rem] font-bold text-black">FAQ</h2>
               <a href="" className="text-[1.07rem] sm:text-[15px]">How to know my skin type</a>
@@ -142,7 +211,6 @@ function Hero() {
               <a href="" className="text-[1.07rem] sm:text-[15px]">Return Policy</a>
               <a href="" className="text-[1.07rem] sm:text-[15px]">Account Management</a>
             </div>
-
             <div className="flex flex-col gap-3">
               <h2 className="text-[1.1rem] font-bold text-black">Product</h2>
               <a href="" className="text-[1.07rem] sm:text-[15px]">Features</a>
@@ -152,7 +220,7 @@ function Hero() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-0">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-8 sm:gap-0">
             <div className="flex flex-col gap-4">
               <h2 className="text-[1rem] sm:text-[0.9rem] text-black font-semibold">Sign Up for Email Deals & Cashback</h2>
               <div className="flex overflow-hidden rounded-lg bg-amber-50">
@@ -166,7 +234,7 @@ function Hero() {
                 </button>
               </div>
             </div>
-            <div className="flex gap-2 text-[1.4rem] sm:text-[.7rem] justify-center self-center">
+            <div className="flex gap-2 text-[1.7rem] sm:text-[.7rem] justify-center self-center">
               <i className="fa-brands fa-x-twitter"></i>
               <i className="fa-brands fa-tiktok"></i>
               <i className="fa-brands fa-square-facebook"></i>
