@@ -9,7 +9,7 @@ function Hero() {
     >
       <div className="w-[90%] flex justify-end">
         <div className="w-full text-center font-[serif] text-[white]">
-          <h1 className="text-[2.4rem] leading-[65px] tracking-[1px] font-medium">Glow with Aloe Naturally. Radiate Confidence.</h1>
+          <h1 className="text-[2.5rem] leading-[62px] tracking-[1px] font-medium">Glow with Aloe Naturally. Radiate Confidence.</h1>
           <p className="leading-7.5 tracking-[1px] text-[1.15rem] self-end mt-3 mb-8">Experience the purity of nature blended with science-backed skincare made to nurture, not overwhelm.</p>
           <button className="w-full py-3 bg-[white] text-[black] text-[1rem] rounded-full font-[500]" type="button">Shop Now</button>
         </div>
